@@ -1,0 +1,21 @@
+# Keep the manifest current: checkver finds a new release, autoupdate rewrites
+# the version, URL and hash from the published asset digest.
+name: excavator
+on:
+  schedule:
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  excavate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Excavate
+        uses: ScoopInstaller/GithubActions@main
+        env:
+          GITH_EMAIL: vasyagleba@gmail.com
+          SKIP_UPDATED: "1"
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
