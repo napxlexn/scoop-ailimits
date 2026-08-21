@@ -2,6 +2,8 @@
 # the version, URL and hash from the published asset digest.
 name: excavator
 on:
+  push:
+    paths: [".github/workflows/excavator.yml"]
   schedule:
     - cron: "20 6 * * *"
   workflow_dispatch:
